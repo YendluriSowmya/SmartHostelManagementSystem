@@ -10,10 +10,8 @@ namespace SmartHostelManagementSystem.Services
 {
     public class RoomService
     {
-        private readonly string file = "rooms.json";
-
-        public async Task<List<Room>> GetAllRoomsAsync() =>
-            await FileStorage.LoadAsync<Room>(file);
+        private readonly string file = "rooms.json";            
+        
 
         public async Task AllocateRoomAsync(Student student)
         {
@@ -31,6 +29,13 @@ namespace SmartHostelManagementSystem.Services
             {
                 throw new Exception("No rooms available.");
             }
+        }
+
+        public async Task<List<Room>> GetAllRoomsAsync()
+        {
+            var rooms = await GetAllRoomsAsync();
+            var fullRooms = rooms.Where(r => r.Occupied >= r.Capacity).ToList();
+            return fullRooms;
         }
     }
 }
