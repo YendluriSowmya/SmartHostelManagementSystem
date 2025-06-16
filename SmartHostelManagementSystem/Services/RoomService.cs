@@ -10,8 +10,8 @@ namespace SmartHostelManagementSystem.Services
 {
     public class RoomService
     {
-        private readonly string file = "rooms.json";       
-            
+        private readonly string file = "rooms.json";            
+        
 
         public async Task AllocateRoomAsync(Student student)
         {
