@@ -37,24 +37,5 @@ namespace SmartHostelManagementSystem.Services
             var fullRooms = rooms.Where(r => r.Occupied >= r.Capacity).ToList();
             return fullRooms;
         }
-
-        public async Task<List<Room>> GetAvailableRoomsAsync()
-        {
-            var rooms = await GetAllRoomsAsync();
-            var availableRooms = rooms
-                                 .Where(r => r.Occupied < r.Capacity)
-                                 .ToList();
-            return availableRooms;
-        }
-
-        public async Task<List<Room>> GetSortedRoomsAsync()
-        {
-            var rooms = await GetAllRoomsAsync();
-            var sortedRooms = rooms
-                              .OrderBy(r => r.RoomNumber)
-                              .ToList();
-            return sortedRooms;
-        }
-
     }
 }
